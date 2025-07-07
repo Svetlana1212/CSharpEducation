@@ -4,15 +4,60 @@ namespace StaffManager
 {
     internal class Program
     {
-        static int ReturnId(string message = "")
+        static int ReturnInt(string message = "")
         {
-            int userId;
+            int userInt;
             do
             {
                 Console.WriteLine(message);
             }
-            while (!Int32.TryParse(Console.ReadLine(), out userId));
-            return userId;
+            while (!Int32.TryParse(Console.ReadLine(), out userInt));
+            return userInt;
+        }
+        /// <summary>
+        /// Создает нового сотрудника
+        /// </summary>
+        /// <param name="id">id сотрудника </param>
+        /// <returns>Возвращает объект класса Employee</returns>
+        static Employee CreateEmployee(int id)
+        {
+            Console.WriteLine("Введите имя сотрудника");
+            string name = Console.ReadLine();
+            Console.WriteLine("Введите ставку для оплаты");
+            decimal salary;
+            try
+            {
+                salary = Decimal.Parse(Console.ReadLine());
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine("Неправильный формат ставки для оплаты");
+                salary = 0;
+            }
+            Console.WriteLine("Введите должность сотрудника");
+            string post = Console.ReadLine();
+            Console.WriteLine("Введите тип оплаты сотрудника(оклад:1/ставка:2)");
+            string typeSalary = Console.ReadLine();
+            Employee newEmployee;
+            if (typeSalary == "1")
+            {
+                newEmployee = new FullTimeEmployee(id, name);
+                newEmployee.Type = "FullTime";
+            }
+            else if (typeSalary == "2")
+            {
+                newEmployee = new PartTimeEmployee(id, name);
+                newEmployee.Type = "PartTime";
+            }
+            else
+            {
+                Console.WriteLine("Введен некорректный тип олаты для сотрудника");
+                return null;
+            }
+
+            newEmployee.BaseSalary = salary;
+            newEmployee.Post = post;
+            return newEmployee;
         }
 
         static void Main(string[] args)
@@ -31,12 +76,12 @@ namespace StaffManager
 6. Очистить экран
 7. Выйти
 Выберите действие:");
-                int choice = ReturnId();
+                int choice = ReturnInt();
                 switch (choice)
                 {
                     case 1:
-                        int newId = ReturnId("Введите id сотрудника: ");
-                        Employee newEmployee = EmployeeManager.CreateEmployee(newId);
+                        int newId = ReturnInt("Введите id сотрудника: ");
+                        Employee newEmployee = CreateEmployee(newId);
                         if (newEmployee != null)
                         {
                             try
@@ -54,7 +99,7 @@ namespace StaffManager
                         }                                                                       
                         break;
                     case 2:
-                        int userId = ReturnId("Введите id сотрудника: ");
+                        int userId = ReturnInt("Введите id сотрудника: ");
                         Console.WriteLine("Введите имя сотрудика: ");
                         string name = Console.ReadLine();                        
                         Console.WriteLine("Введите тип оплаты сотрудника(оклад:1/ставка:2)");
@@ -87,7 +132,7 @@ namespace StaffManager
                         }
                         break;
                     case 3:
-                        int viewedId = ReturnId("Введите id сотрудника: ");
+                        int viewedId = ReturnInt("Введите id сотрудника: ");
                         try
                         {
                             Employee viewedEmployee = EmployeeManager.Get(viewedId);
@@ -103,7 +148,7 @@ namespace StaffManager
                         }
                         break;
                     case 4:
-                        int updateId = ReturnId("Введите id сотрудника: ");
+                        int updateId = ReturnInt("Введите id сотрудника: ");
                         try
                         {                            
                             Employee updateEmployee = EmployeeManager.Get(updateId);
@@ -136,7 +181,7 @@ namespace StaffManager
                         }
                         break;
                     case 5:
-                        int delId = ReturnId("Введите id сотрудника: ");
+                        int delId = ReturnInt("Введите id сотрудника: ");
                         try
                         {
                             EmployeeManager.Delete(delId);

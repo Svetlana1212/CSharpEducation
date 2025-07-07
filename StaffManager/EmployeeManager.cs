@@ -24,51 +24,7 @@ namespace StaffManager
         /// </summary>
         public static List<Employee> Staffs = new List<Employee>();
 
-        /// <summary>
-        /// Создает нового сотрудника
-        /// </summary>
-        /// <param name="id">id сотрудника </param>
-        /// <returns>Возвращает объект класса Employee</returns>
-        public static Employee CreateEmployee(int id)
-        {
-            Console.WriteLine("Введите имя сотрудника");
-            string name = Console.ReadLine();                     
-            Console.WriteLine("Введите ставку для оплаты");
-            decimal salary;
-            try
-            {
-                salary = Decimal.Parse(Console.ReadLine());
-            }            
-            catch (FormatException)
-            {
-                Console.WriteLine("Неправильный формат ставки для оплаты");
-                salary = 0;
-            }          
-            Console.WriteLine("Введите должность сотрудника");
-            string post = Console.ReadLine();
-            Console.WriteLine("Введите тип оплаты сотрудника(оклад:1/ставка:2)");
-            string typeSalary = Console.ReadLine();
-            Employee newEmployee;
-            if (typeSalary == "1") 
-            { 
-                newEmployee = new FullTimeEmployee(id,name);
-                newEmployee.Type = "FullTime";
-            }
-            else if(typeSalary == "2")
-            {
-                newEmployee = new PartTimeEmployee(id,name);
-                newEmployee.Type = "PartTime";
-            }
-            else
-            {
-                Console.WriteLine("Введен некорректный тип олаты для сотрудника");
-                return null;
-            }            
-            
-            newEmployee.BaseSalary=salary;
-            newEmployee.Post = post;
-            return newEmployee;
-        }
+        
 
         /// <summary>
         /// Добавляет сотрудика в список
