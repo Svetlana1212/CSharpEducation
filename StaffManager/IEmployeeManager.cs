@@ -9,25 +9,25 @@ namespace StaffManager
     /// <summary>
     /// Интерфейс для управления сотрудниками
     /// </summary>
-    /// <typeparam name="Employee">Объект сотрудника</typeparam>
-    internal interface IEmployeeManager<Employee>
+    /// <typeparam name="T">Тип объекта.</typeparam>
+    internal interface IEmployeeManager<T>
     {
         /// <summary>
-        /// Добавляет сотрудника в коллекцию
+        /// Добавляет объект в коллекцию
         /// </summary>
         /// <param name="employee"></param>
-        void Add(Employee employee) { }
+        void Add(T employee) { }
 
         /// <summary>
-        /// Находит сотрудника в коллекции по параметру
+        /// Находит объект в коллекции по параметру
         /// </summary>
         /// <param name="name">Имя сотрудника(параметр)</param>
-        void Get(string name) {  }
+        T Get(string name) { return default(T); }
 
         /// <summary>
-        /// Редактирует параметры сотрудника
+        /// Редактирует параметры объекта
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
-        void Update(Employee employee) { }
+        void Update(T employee) { }
     }
 }
