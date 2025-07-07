@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Сотрудник с начислением оплаты по часовой ставке
+    /// Сотрудник с начислением оплаты по часовой ставке.
     /// </summary>
     public class PartTimeEmployee : Employee
     {
@@ -36,14 +36,24 @@ namespace StaffManager
         /// </summary>
         public string Type = "PartTime";
 
-        public PartTimeEmployee(int id, string name) : base(id, name)
-        {
-        }
-
+        /// <summary>
+        /// Метод для расчета заработной платы сотрудника по часовой ставке
+        /// </summary>
+        /// <param name="workCount"></param>
+        /// <returns></returns>
         public decimal CalculateSalary(decimal workCount)
         {
             decimal salary = Math.Round(this.BaseSalary * workCount);
             return salary;
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">Id сотрудника </param>
+        /// <param name="name">Имя сотрудника</param>
+        public PartTimeEmployee(int id, string name) : base(id, name)
+        {
         }
     }
 }

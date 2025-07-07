@@ -4,16 +4,22 @@ namespace StaffManager
 {
     internal class Program
     {
+        /// <summary>
+        /// Обрабатывает ввод пользователя, преобразует в целое число
+        /// </summary>
+        /// <param name="message">Сообщение пользователю для ввода числа</param>
+        /// <returns></returns>
         static int ReturnInt(string message = "")
         {
-            int userInt;
+            int input;
             do
             {
                 Console.WriteLine(message);
             }
-            while (!Int32.TryParse(Console.ReadLine(), out userInt));
-            return userInt;
+            while (!Int32.TryParse(Console.ReadLine(), out input));
+            return input;
         }
+
         /// <summary>
         /// Создает нового сотрудника
         /// </summary>
@@ -51,7 +57,7 @@ namespace StaffManager
             }
             else
             {
-                Console.WriteLine("Введен некорректный тип олаты для сотрудника");
+                Console.WriteLine("Введен некорректный типа олаты для сотрудника");
                 return null;
             }
 
@@ -76,8 +82,8 @@ namespace StaffManager
 6. Очистить экран
 7. Выйти
 Выберите действие:");
-                int choice = ReturnInt();
-                switch (choice)
+                int input = ReturnInt();
+                switch (input)
                 {
                     case 1:
                         int newId = ReturnInt("Введите id сотрудника: ");
@@ -159,20 +165,46 @@ namespace StaffManager
 2.оклад(часовую ставку)
 3.должность
 ");
-                            switch (Int32.Parse(Console.ReadLine()))
+                            int parametr = ReturnInt();
+                            string parametrType = string.Empty;
+                            string parametrValue = string.Empty;
+                            switch (parametr)
                             {
                                 case 1:
-                                    EmployeeManager.Update(updateEmployee, "type");
+                                    Console.WriteLine("Введите новый тип оплаты пользователя(оклад-1/часовая ставка -2): ");
+                                    string type = Console.ReadLine();
+                                    if (type == "1" || type == "2")
+                                    {
+                                        parametrType = "type";
+                                        parametrValue = type;                                        
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("Введен некорректный формат типа оплаты");
+                                    }
                                     break;
                                 case 2:
-                                    EmployeeManager.Update(updateEmployee, "salary");
+                                    Console.Write("Введите новую ставку для расчета заработной платы:");
+                                    parametrValue = Console.ReadLine();
+                                    parametrType = "salary";                                 
                                     break;
                                 case 3:
-                                    EmployeeManager.Update(updateEmployee, "post");
+                                    Console.WriteLine("Введите новую должность:");
+                                    parametrValue = Console.ReadLine();
+                                    parametrType = "post";
                                     break;
                                 default:
                                     Console.WriteLine("Некорректный ввод");
                                     break;
+                                
+                            }
+                            if(EmployeeManager.Update(updateEmployee, parametrType, parametrValue))
+                            {
+                                Console.WriteLine("Информация обновлена");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Введены некорректные параметры");
                             }
                         }
                         catch (SreachNullException)
@@ -182,15 +214,27 @@ namespace StaffManager
                         break;
                     case 5:
                         int delId = ReturnInt("Введите id сотрудника: ");
+                        
                         try
-                        {
-                            EmployeeManager.Delete(delId);
-                            Console.WriteLine("Пользователь успешно удален");
+                        {                            
+                            Employee employee = EmployeeManager.Get(delId);
+                            Console.WriteLine($"Пользователь - {employee.Name}, {employee.Post} будет удален. Продолжить? (да/нет)");
+                            if (Console.ReadLine() == "да")
+                            {
+                                EmployeeManager.Delete(employee);
+                                Console.WriteLine("Пользователь успешно удален");
+                            }
+                            
                         }
                         catch(DeliteIdException)
                         {
                             Console.WriteLine("Пользователь с таким Id не найден");
                         }
+                        catch (SreachNullException)
+                        {
+                            Console.WriteLine("Пользователь с таким Id не найден");
+                        }
+
                         break;
                     case 6:
                         Console.Clear();

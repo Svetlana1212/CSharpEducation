@@ -34,16 +34,7 @@ namespace StaffManager
         /// <summary>
         /// Тип олаты(оклад или часовая ставка)
         /// </summary>
-        public string Type = "FullTime";
-
-        /// <summary>
-        /// Конструктор
-        /// </summary>
-        /// <param name="id">id сотрудика</param>
-        /// <param name="name">имя сотрудника</param>
-        public FullTimeEmployee(int id, string name) : base(id, name)
-        {
-        }
+        public string Type = "FullTime";        
 
         /// <summary>
         /// Метод начисления заработной платы
@@ -55,6 +46,15 @@ namespace StaffManager
         {
             decimal salary = Math.Round((this.BaseSalary / monthDaysCount) * workDaysCount, 2);
             return salary;
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">id сотрудика</param>
+        /// <param name="name">имя сотрудника</param>
+        public FullTimeEmployee(int id, string name) : base(id, name)
+        {
         }
     }
 }

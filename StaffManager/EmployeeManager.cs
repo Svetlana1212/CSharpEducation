@@ -22,26 +22,25 @@ namespace StaffManager
         /// <summary>
         /// Коллекция для хранения списка сотрудиков
         /// </summary>
-        public static List<Employee> Staffs = new List<Employee>();
-
-        
+        public static List<Employee> Staffs = new List<Employee>();        
 
         /// <summary>
         /// Добавляет сотрудика в список
         /// </summary>
         /// <param name="employee">Объек класса Employee(сотрудик) </param>
         /// <exception cref="AddIdException"></exception>
-        public static void Add(Employee employee) 
+        public static bool Add(Employee employee) 
         {
-            if(Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
+            if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
             {
                 throw new AddIdException();
+                return false;
             } 
             else 
             {
                 Staffs.Add(employee);
                 Write();
-                Console.WriteLine("Пользователь успешно добавлен");
+                return true;                
             }                            
         }
 
@@ -66,43 +65,32 @@ namespace StaffManager
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
         /// <param name="parametr">Параметр для редактирования</param>
-        public static void Update(Employee employee, string parametr) 
+        public static bool Update(Employee employee, string parametr, string parameterValue) 
         {
             switch (parametr)
             {
-                case "salary":
-                    Console.Write("Введите новую ставку для расчета заработной платы:");
-                    try
+                case "salary":                    
+                    if(Decimal.TryParse(parameterValue, out decimal salary))
                     {
-                        employee.BaseSalary = Decimal.Parse(Console.ReadLine());
-                    }
-                    catch (FormatException)
-                    {
-                        Console.WriteLine("Неправильный формат часовой ставки");                        
-                    }
-                    break;
-                case "post":
-                    Console.WriteLine("Введите новую должность:");
-                    employee.Post = Console.ReadLine();
-                    break;
-                case "type":
-                    Console.WriteLine("Введите новый тип оплаты пользователя(оклад-1/часовая ставка -2): ");
-                    string input = Console.ReadLine();
-                    if (input == "1" || input == "2")
-                    {
-                        employee.Type = (input == "1") ? "FullTime" : "PartTime";                        
+                        employee.BaseSalary = salary;
                     }
                     else
                     {
-                        Console.WriteLine("Некорректный ввод");
-                    }                    
+                        return false;                                             
+                    }
+                    break;
+                case "post":                    
+                    employee.Post = parameterValue;
+                    break;
+                case "type":                   
+                    employee.Type = (parameterValue == "1") ? "FullTime" : "PartTime";     
                     break;
                 default:
-                    Console.WriteLine("Некорректное значение параметра");
+                    return false;
                     break;
             }
             Write();
-            Console.WriteLine("Информация обновлена");                           
+            return true;
         }
 
         /// <summary>
@@ -111,21 +99,18 @@ namespace StaffManager
         /// <param name="id">Id сотрудника</param>
         /// <returns>true в случае успеха, иначе false </returns>
         /// <exception cref="DeliteIdException"></exception>
-        public static bool Delete(int id)
+        public static bool Delete(Employee employee)
         {
-            Employee employee = Staffs.FirstOrDefault(u => u.Id == id);
-            if(employee == null)
+            //Employee employee = Get(id);
+            if (employee == null)
             {
                 throw new DeliteIdException();
-            }
-            Console.WriteLine($"Пользователь - {employee.Name}, {employee.Post} будет удален. Продолжить? (да/нет)");
-            if (Console.ReadLine() == "да")
-            {
-                Staffs.Remove(employee);
-                Write();                
-                return true;
-            }
-            return false;
+                return false;
+            }            
+            Staffs.Remove(employee);
+            Write();                
+            return true;         
+            
         }
         /// <summary>
         /// Считывает данные из файла в список
