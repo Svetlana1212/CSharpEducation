@@ -13,12 +13,7 @@ namespace StaffManager
     public class AddIdException: Exception
     {
         public AddIdException() { }
-
-        public AddIdException(string message) : base(message) { }
-
-        public AddIdException(string message, Exception inner) : base(message, inner) { }
-
-        protected AddIdException(SerializationInfo info, StreamingContext context) : base(info, context) { }
+        public AddIdException(string message) : base(message) { }        
     }
 
     /// <summary>
@@ -26,7 +21,8 @@ namespace StaffManager
     /// </summary>
     public class DeliteIdException: Exception
     {
-
+        public DeliteIdException() { }
+        public DeliteIdException(string message) : base(message) { }
     }
 
     /// <summary>
@@ -34,7 +30,8 @@ namespace StaffManager
     /// </summary>
     public class SreachNullException : Exception
     {
-
+        public SreachNullException() { }
+        public SreachNullException(string message) : base(message) { }
     }
 
 }

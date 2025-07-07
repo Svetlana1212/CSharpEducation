@@ -27,13 +27,13 @@ namespace StaffManager
         /// <summary>
         /// Добавляет сотрудика в список
         /// </summary>
-        /// <param name="employee">Объек класса Employee(сотрудик) </param>
+        /// <param name="employee">Объект класса Employee(сотрудик) </param>
         /// <exception cref="AddIdException"></exception>
         public static bool Add(Employee employee) 
         {
             if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
             {
-                throw new AddIdException();
+                throw new AddIdException("Пользователь с таким Id уже есть");
                 return false;
             } 
             else 
@@ -55,7 +55,7 @@ namespace StaffManager
             Employee user = Staffs.Find(item => item.Id == id);
             if (user == null)
             {
-                throw new SreachNullException();              
+                throw new SreachNullException("Пользователь с таким Id не найден");              
             }
             return user;
         }
@@ -104,7 +104,7 @@ namespace StaffManager
             //Employee employee = Get(id);
             if (employee == null)
             {
-                throw new DeliteIdException();
+                throw new DeliteIdException("Пользователь с таким Id не найден");
                 return false;
             }            
             Staffs.Remove(employee);

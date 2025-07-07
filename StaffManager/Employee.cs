@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Сотрудик
+    /// Сотрудик.
     /// </summary>
     public abstract class Employee
     {
         /// <summary>
-        /// Id сотрудика
+        /// Id сотрудика.
         /// </summary>
         public int Id { get; set; }
 
@@ -22,7 +22,7 @@ namespace StaffManager
         public string Name { get; }
 
         /// <summary>
-        /// Ставка для начислеия зарлаты
+        /// Ставка для начислеия зарлаты.
         /// </summary>
         public decimal BaseSalary { get; set; }
 
@@ -32,24 +32,29 @@ namespace StaffManager
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип олаты(оклад или часовая ставка)
+        /// Тип олаты(оклад или часовая ставка).
         /// </summary>
         public string Type { get; set; }
-
+        
         /// <summary>
-        /// Конструктор
+        /// Начисляет заработную плату
         /// </summary>
-        /// <param name="id">id сотрудника</param>
-        /// <param name="name">имя сотрудника</param>
-        public Employee(int id, string name) 
-        { 
-            this.Id = id;
-            this.Name = name;
-        }
+        /// <returns></returns>
         public decimal CalculateSalary()
         {
             decimal salary=0;
             return  salary;
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="id">Id сотрудника</param>
+        /// <param name="name">Имя сотрудника</param>
+        public Employee(int id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
         }
     }
 }

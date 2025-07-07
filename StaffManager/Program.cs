@@ -31,15 +31,10 @@ namespace StaffManager
             string name = Console.ReadLine();
             Console.WriteLine("Введите ставку для оплаты");
             decimal salary;
-            try
+            if (!Decimal.TryParse(Console.ReadLine(), out salary))
             {
-                salary = Decimal.Parse(Console.ReadLine());
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Неправильный формат ставки для оплаты");
                 salary = 0;
-            }
+            }    
             Console.WriteLine("Введите должность сотрудника");
             string post = Console.ReadLine();
             Console.WriteLine("Введите тип оплаты сотрудника(оклад:1/ставка:2)");
@@ -86,26 +81,27 @@ namespace StaffManager
                 switch (input)
                 {
                     case 1:
-                        int newId = ReturnInt("Введите id сотрудника: ");
+                        int newId = ReturnInt("Введите id сотрудника (целое число): ");
                         Employee newEmployee = CreateEmployee(newId);
                         if (newEmployee != null)
                         {
                             try
                             {
                                 EmployeeManager.Add(newEmployee);
+                                Console.WriteLine("Пользователь успешно добавлен");
                             }                            
-                            catch (AddIdException)
+                            catch (AddIdException e)
                             {
-                                Console.WriteLine("Пользователь с таким Id уже существует");
+                                Console.WriteLine(e.Message); 
                             }
                             catch (NullReferenceException)
                             {
                                 Console.WriteLine("Невозможно добавить данного пользователя");
                             }
-                        }                                                                       
+                        }                        
                         break;
                     case 2:
-                        int userId = ReturnInt("Введите id сотрудника: ");
+                        int userId = ReturnInt("Введите id сотрудника (целое число): ");
                         Console.WriteLine("Введите имя сотрудика: ");
                         string name = Console.ReadLine();                        
                         Console.WriteLine("Введите тип оплаты сотрудника(оклад:1/ставка:2)");
@@ -128,9 +124,9 @@ namespace StaffManager
                         { 
                             EmployeeManager.Add(newBriefEmployee);
                         }
-                        catch (AddIdException)
+                        catch (AddIdException e)
                         {
-                            Console.WriteLine("Пользователь с таким Id уже существует");
+                            Console.WriteLine(e.Message);
                         }
                         catch (NullReferenceException)
                         {
@@ -138,7 +134,7 @@ namespace StaffManager
                         }
                         break;
                     case 3:
-                        int viewedId = ReturnInt("Введите id сотрудника: ");
+                        int viewedId = ReturnInt("Введите id сотрудника (целое число): ");
                         try
                         {
                             Employee viewedEmployee = EmployeeManager.Get(viewedId);
@@ -154,7 +150,7 @@ namespace StaffManager
                         }
                         break;
                     case 4:
-                        int updateId = ReturnInt("Введите id сотрудника: ");
+                        int updateId = ReturnInt("Введите id сотрудника (целое число): ");
                         try
                         {                            
                             Employee updateEmployee = EmployeeManager.Get(updateId);
@@ -165,7 +161,7 @@ namespace StaffManager
 2.оклад(часовую ставку)
 3.должность
 ");
-                            int parametr = ReturnInt();
+                            int parametr = ReturnInt("Выберите значение: ");
                             string parametrType = string.Empty;
                             string parametrValue = string.Empty;
                             switch (parametr)
@@ -213,7 +209,7 @@ namespace StaffManager
                         }
                         break;
                     case 5:
-                        int delId = ReturnInt("Введите id сотрудника: ");
+                        int delId = ReturnInt("Введите id сотрудника (целое число): ");
                         
                         try
                         {                            
@@ -226,9 +222,10 @@ namespace StaffManager
                             }
                             
                         }
-                        catch(DeliteIdException)
+                        catch(DeliteIdException e)
                         {
-                            Console.WriteLine("Пользователь с таким Id не найден");
+                            Console.WriteLine(e.Message);
+                            
                         }
                         catch (SreachNullException)
                         {
