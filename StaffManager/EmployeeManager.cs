@@ -34,13 +34,13 @@ namespace StaffManager
                 Staffs = new List<Employee>();
             }
         }         
-
+        
         /// <summary>
         /// Добавляет сотрудика в список
         /// </summary>
         /// <param name="employee">Объект класса Employee(сотрудик) </param>
         /// <exception cref="AddIdException"></exception>
-        public static bool Add(Employee employee) 
+        public bool Add(Employee employee) 
         {
             if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
             {
@@ -61,7 +61,7 @@ namespace StaffManager
         /// <param name="id">Id сотрудника</param>
         /// <returns>Объект сотрудика</returns>
         /// <exception cref="SreachNullException">Если объект пустой</exception>
-        public static Employee Get(int id)
+        public Employee Get(int id)
         {
             Employee user = Staffs.Find(item => item.Id == id);
             if (user == null)
@@ -76,7 +76,7 @@ namespace StaffManager
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
         /// <param name="parametr">Параметр для редактирования</param>
-        public static bool Update(Employee employee, string parametr, string parameterValue) 
+        public bool Update(Employee employee, string parametr, string parameterValue) 
         {
             switch (parametr)
             {
@@ -110,7 +110,7 @@ namespace StaffManager
         /// <param name="id">Id сотрудника</param>
         /// <returns>true в случае успеха, иначе false </returns>
         /// <exception cref="DeliteIdException"></exception>
-        public static bool Delete(Employee employee)
+        public bool Delete(Employee employee)
         {
             //Employee employee = Get(id);
             if (employee == null)
@@ -127,7 +127,7 @@ namespace StaffManager
         /// Считывает данные из файла в список
         /// </summary>
         /// <returns>Список сотрудников</returns>
-        public static bool LoadFromFile()
+        private bool LoadFromFile()
         {
             if (!File.Exists(Path)) return false;
             string[] lines = File.ReadAllLines(Path);
@@ -160,10 +160,10 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Записывет данные в файл
+        /// Записать данные.
         /// </summary>
         /// <returns>true в случае успеха, иначе false</returns>
-        public static bool Write()
+        public bool Write()
         {
             using StreamWriter sw = File.CreateText(Path);
             foreach (var item in Staffs)
@@ -171,6 +171,13 @@ namespace StaffManager
                 sw.WriteLine($"{item.Id}|{item.Name}|{item.BaseSalary}|{item.Post}|{item.Type}");
             }
             return true;
+        }
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        public EmployeeManager()
+        {
+            LoadFromFile();
         }
     }
 }

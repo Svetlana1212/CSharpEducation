@@ -34,6 +34,7 @@ namespace StaffManager
             decimal salary;
             if (!Decimal.TryParse(Console.ReadLine(), out salary))
             {
+                Console.WriteLine("Введена некорректная ставка для оплаты");
                 salary = 0;
             }    
             Console.WriteLine("Введите должность сотрудника");
@@ -53,7 +54,7 @@ namespace StaffManager
             }
             else
             {
-                Console.WriteLine("Введен некорректный типа олаты для сотрудника");
+                Console.WriteLine("Введен некорректный типа олаты для сотрудника. Сотрудник не создан");                
                 return null;
             }
 
@@ -65,8 +66,9 @@ namespace StaffManager
         static void Main(string[] args)
         {
             bool programm = true;
-            EmployeeManager.LoadFromFile();
-            
+            EmployeeManager newEmployeeManager = new EmployeeManager();
+
+
             do
             {
                 Console.WriteLine(@"
@@ -88,7 +90,7 @@ namespace StaffManager
                         {
                             try
                             {
-                                EmployeeManager.Add(newEmployee);
+                                newEmployeeManager.Add(newEmployee);
                                 Console.WriteLine("Пользователь успешно добавлен");
                             }                            
                             catch (AddIdException e)
@@ -122,8 +124,8 @@ namespace StaffManager
                             newBriefEmployee = new PartTimeEmployee(userId, name);                            
                         }
                         try 
-                        { 
-                            EmployeeManager.Add(newBriefEmployee);
+                        {
+                            newEmployeeManager.Add(newBriefEmployee);
                             Console.WriteLine("Пользователь успешно добавлен");
                         }
                         catch (AddIdException e)
@@ -139,7 +141,7 @@ namespace StaffManager
                         int viewedId = ReturnInt("Введите id сотрудника (целое число): ");
                         try
                         {
-                            Employee viewedEmployee = EmployeeManager.Get(viewedId);
+                            Employee viewedEmployee = newEmployeeManager.Get(viewedId);
                             if (viewedEmployee != null)
                             {
                                 string salaryType = (viewedEmployee.Type == "FullTime") ? "оклад" : "часовая ставка";
@@ -155,7 +157,7 @@ namespace StaffManager
                         int updateId = ReturnInt("Введите id сотрудника (целое число): ");
                         try
                         {                            
-                            Employee updateEmployee = EmployeeManager.Get(updateId);
+                            Employee updateEmployee = newEmployeeManager.Get(updateId);
                             string salaryType = (updateEmployee.Type == "FullTime") ? "оклад" : "часовая ставка";
                             Console.WriteLine($"Сотрудник - Имя:{updateEmployee.Name}, должность:{updateEmployee.Post}, {salaryType}: {updateEmployee.BaseSalary}");
                             Console.WriteLine(@"Выберите параметр, который нужно изменить
@@ -196,7 +198,7 @@ namespace StaffManager
                                     break;
                                 
                             }
-                            if(EmployeeManager.Update(updateEmployee, parametrType, parametrValue))
+                            if(newEmployeeManager.Update(updateEmployee, parametrType, parametrValue))
                             {
                                 Console.WriteLine("Информация обновлена");
                             }
@@ -215,11 +217,11 @@ namespace StaffManager
                         
                         try
                         {                            
-                            Employee employee = EmployeeManager.Get(delId);
+                            Employee employee = newEmployeeManager.Get(delId);
                             Console.WriteLine($"Пользователь - {employee.Name}, {employee.Post} будет удален. Продолжить? (да/нет)");
                             if (Console.ReadLine() == "да")
                             {
-                                EmployeeManager.Delete(employee);
+                                newEmployeeManager.Delete(employee);
                                 Console.WriteLine("Пользователь успешно удален");
                             }
                             
