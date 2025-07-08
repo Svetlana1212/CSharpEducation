@@ -17,12 +17,23 @@ namespace StaffManager
         /// <summary>
         /// Путь к файлу, где записаны сотрудники
         /// </summary>
-        private static string Path = "staff.txt";
+        private const string Path = "staff.txt";
 
         /// <summary>
         /// Коллекция для хранения списка сотрудиков
         /// </summary>
-        public static List<Employee> Staffs = new List<Employee>();        
+        private static List <Employee> Employees = new List <Employee> ();
+        public static List<Employee> Staffs
+        {
+            get
+            {
+                return Employees;
+            }                   
+            set
+            {
+                Staffs = new List<Employee>();
+            }
+        }         
 
         /// <summary>
         /// Добавляет сотрудика в список

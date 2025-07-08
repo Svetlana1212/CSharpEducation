@@ -11,12 +11,13 @@ namespace StaffManager
         /// <returns></returns>
         static int ReturnInt(string message = "")
         {
-            int input;
-            do
+            int input;            
+            Console.WriteLine(message);            
+            while (!Int32.TryParse(Console.ReadLine(), out input))
             {
+                Console.WriteLine("Введено некорректное значение");
                 Console.WriteLine(message);
-            }
-            while (!Int32.TryParse(Console.ReadLine(), out input));
+            }            
             return input;
         }
 
@@ -123,6 +124,7 @@ namespace StaffManager
                         try 
                         { 
                             EmployeeManager.Add(newBriefEmployee);
+                            Console.WriteLine("Пользователь успешно добавлен");
                         }
                         catch (AddIdException e)
                         {
