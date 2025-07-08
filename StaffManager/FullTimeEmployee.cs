@@ -7,37 +7,37 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Сотрудник с начислением заработной платы по окладу
+    /// Сотрудник с начислением заработной платы по окладу.
     /// </summary>
     public class FullTimeEmployee : Employee
     {
         /// <summary>
-        /// Id сотрудика
+        /// Id сотрудика.
         /// </summary>
         public int Id {get; set;}
 
         /// <summary>
-        /// Имя сотрудика
+        /// Имя сотрудика.
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Ставка для начислеия зарлаты
+        /// Ставка для начислеия зарлаты.
         /// </summary>
         public decimal BaseSalary { get; set; }
 
         /// <summary>
-        /// Должность
+        /// Должность.
         /// </summary>
         public string Post {  get; set; }
 
         /// <summary>
-        /// Тип олаты(оклад или часовая ставка)
+        /// Тип олаты(оклад или часовая ставка).
         /// </summary>
         public string Type = "FullTime";        
 
         /// <summary>
-        /// Метод начисления заработной платы
+        /// Начислить заработную плату сотрудника по окладу.
         /// </summary>
         /// <param name="monthDaysCount">Количество дней в месяце</param>
         /// <param name="workDaysCount">Количество отработанных дней</param>
@@ -49,7 +49,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
         /// <param name="id">id сотрудика</param>
         /// <param name="name">имя сотрудника</param>

@@ -7,25 +7,25 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Интерфейс для управления сотрудниками
+    /// Интерфейс для управления сотрудниками.
     /// </summary>
     /// <typeparam name="T">Тип объекта.</typeparam>
     internal interface IEmployeeManager<T>
     {
         /// <summary>
-        /// Добавляет объект в коллекцию
+        /// Добавить объект в коллекцию.
         /// </summary>
         /// <param name="employee"></param>
-        void Add(T employee) { }
+        bool Add(T employee) { return true; }
 
         /// <summary>
-        /// Находит объект в коллекции по параметру
+        /// Найти объект в коллекции по параметру.
         /// </summary>
         /// <param name="name">Имя сотрудника(параметр)</param>
         T Get(string name) { return default(T); }
 
         /// <summary>
-        /// Редактирует параметры объекта
+        /// Редактировать параметры объекта.
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
         void Update(T employee) { }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Возникает в случае если пользователь с таким id уже есть
+    /// Возникает в случае если пользователь с таким id уже есть.
     /// </summary>
     public class AddIdException: Exception
     {
@@ -17,7 +17,7 @@ namespace StaffManager
     }
 
     /// <summary>
-    /// Возникает в случае если удаляемый пользователь не найден
+    /// Возникает в случае если удаляемый пользователь не найден.
     /// </summary>
     public class DeliteIdException: Exception
     {
@@ -26,7 +26,7 @@ namespace StaffManager
     }
 
     /// <summary>
-    /// Возникает в случае если пользователь не найден
+    /// Возникает в случае если пользователь не найден.
     /// </summary>
     public class SreachNullException : Exception
     {

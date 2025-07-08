@@ -10,17 +10,17 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Управляет списком сотрудников
+    /// Управляет списком сотрудников.
     /// </summary>
     public class EmployeeManager: IEmployeeManager<Employee>
     {
         /// <summary>
-        /// Путь к файлу, где записаны сотрудники
+        /// Путь к файлу, где записаны сотрудники.
         /// </summary>
         private const string Path = "staff.txt";
 
         /// <summary>
-        /// Коллекция для хранения списка сотрудиков
+        /// Коллекция для хранения списка сотрудиков.
         /// </summary>
         private static List <Employee> Employees = new List <Employee> ();
         private static List<Employee> Staffs
@@ -36,7 +36,7 @@ namespace StaffManager
         }         
         
         /// <summary>
-        /// Добавляет сотрудика в список
+        /// Добавить сотрудика в список.
         /// </summary>
         /// <param name="employee">Объект класса Employee(сотрудик) </param>
         /// <exception cref="AddIdException"></exception>
@@ -56,7 +56,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Находит сотрудика в списке
+        /// Найти сотрудика в списке.
         /// </summary>
         /// <param name="id">Id сотрудника</param>
         /// <returns>Объект сотрудика</returns>
@@ -72,7 +72,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Редактирует информацию о сотруднике
+        /// Редактировать информацию о сотруднике.
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
         /// <param name="parametr">Параметр для редактирования</param>
@@ -105,7 +105,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Удаляет сотрудика из списка
+        /// Удалить сотрудика из списка.
         /// </summary>
         /// <param name="id">Id сотрудника</param>
         /// <returns>true в случае успеха, иначе false </returns>
@@ -124,7 +124,7 @@ namespace StaffManager
             
         }
         /// <summary>
-        /// Считывает данные из файла в список
+        /// Считать данные из файла в список.
         /// </summary>
         /// <returns>Список сотрудников</returns>
         private bool LoadFromFile()
@@ -173,7 +173,7 @@ namespace StaffManager
             return true;
         }
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
         public EmployeeManager()
         {

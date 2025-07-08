@@ -17,7 +17,7 @@ namespace StaffManager
         public int Id { get; set; }
 
         /// <summary>
-        /// Имя сотрудика
+        /// Имя сотрудика.
         /// </summary>
         public string Name { get; }
 
@@ -27,17 +27,17 @@ namespace StaffManager
         public decimal BaseSalary { get; set; }
 
         /// <summary>
-        /// Должность
+        /// Должность.
         /// </summary>
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип олаты(оклад или часовая ставка).
+        /// Тип оплаты (оклад или часовая ставка).
         /// </summary>
         public string Type { get; set; }
         
         /// <summary>
-        /// Начисляет заработную плату
+        /// Начислить заработную плату.
         /// </summary>
         /// <returns></returns>
         public decimal CalculateSalary()
@@ -47,7 +47,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
         /// <param name="id">Id сотрудника</param>
         /// <param name="name">Имя сотрудника</param>

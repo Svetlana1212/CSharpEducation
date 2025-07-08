@@ -2,10 +2,13 @@
 
 namespace StaffManager
 {
+    /// <summary>
+    /// Консольное приложение для управления списком сотрудников. 
+    /// </summary>
     internal class Program
     {
         /// <summary>
-        /// Обрабатывает ввод пользователя, преобразует в целое число
+        /// Обрабатать ввод пользователя, преобразовать в целое число.
         /// </summary>
         /// <param name="message">Сообщение пользователю для ввода числа</param>
         /// <returns></returns>
@@ -22,7 +25,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Создает нового сотрудника
+        /// Создать нового сотрудника.
         /// </summary>
         /// <param name="id">id сотрудника </param>
         /// <returns>Возвращает объект класса Employee</returns>
@@ -62,7 +65,10 @@ namespace StaffManager
             newEmployee.Post = post;
             return newEmployee;
         }
-
+        /// <summary>
+        /// Точка входа программы.
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             bool programm = true;

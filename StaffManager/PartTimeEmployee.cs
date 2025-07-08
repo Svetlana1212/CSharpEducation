@@ -12,32 +12,32 @@ namespace StaffManager
     public class PartTimeEmployee : Employee
     {
         /// <summary>
-        /// Id сотрудика
+        /// Id сотрудика.
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// Имя сотрудика
+        /// Имя сотрудика.
         /// </summary>
         public string Name { get; }
 
         /// <summary>
-        /// Ставка для начислеия зарлаты
+        /// Ставка для начислеия зарлаты.
         /// </summary>
         public decimal BaseSalary { get; set; }
 
         /// <summary>
-        /// Должность
+        /// Должность.
         /// </summary>
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип олаты(оклад или часовая ставка)
+        /// Тип олаты(оклад или часовая ставка).
         /// </summary>
         public string Type = "PartTime";
 
         /// <summary>
-        /// Метод для расчета заработной платы сотрудника по часовой ставке
+        /// Начислить заработную плату сотрудника по часовой ставке.
         /// </summary>
         /// <param name="workCount"></param>
         /// <returns></returns>
@@ -48,7 +48,7 @@ namespace StaffManager
         }
 
         /// <summary>
-        /// Конструктор
+        /// Конструктор.
         /// </summary>
         /// <param name="id">Id сотрудника </param>
         /// <param name="name">Имя сотрудника</param>
