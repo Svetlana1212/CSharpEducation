@@ -23,7 +23,7 @@ namespace StaffManager
         /// Коллекция для хранения списка сотрудиков
         /// </summary>
         private static List <Employee> Employees = new List <Employee> ();
-        public static List<Employee> Staffs
+        private static List<Employee> Staffs
         {
             get
             {
