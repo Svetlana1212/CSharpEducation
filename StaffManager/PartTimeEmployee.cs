@@ -11,6 +11,7 @@ namespace StaffManager
     /// </summary>
     public class PartTimeEmployee : Employee
     {
+        #region Поля и свойства
         /// <summary>
         /// Id сотрудика.
         /// </summary>
@@ -35,7 +36,9 @@ namespace StaffManager
         /// Тип олаты(оклад или часовая ставка).
         /// </summary>
         public string Type = "PartTime";
+        #endregion
 
+        #region Методы
         /// <summary>
         /// Начислить заработную плату сотрудника по часовой ставке.
         /// </summary>
@@ -46,7 +49,9 @@ namespace StaffManager
             decimal salary = Math.Round(this.BaseSalary * workCount);
             return salary;
         }
+        #endregion
 
+        #region Конструктор
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -55,5 +60,6 @@ namespace StaffManager
         public PartTimeEmployee(int id, string name) : base(id, name)
         {
         }
+        #endregion
     }
 }

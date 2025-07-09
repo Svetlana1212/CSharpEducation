@@ -11,6 +11,7 @@ namespace StaffManager
     /// </summary>
     public abstract class Employee
     {
+        #region Поля и свойства
         /// <summary>
         /// Id сотрудика.
         /// </summary>
@@ -35,7 +36,9 @@ namespace StaffManager
         /// Тип оплаты (оклад или часовая ставка).
         /// </summary>
         public string Type { get; set; }
+        #endregion
         
+        #region Методы
         /// <summary>
         /// Начислить заработную плату.
         /// </summary>
@@ -45,7 +48,9 @@ namespace StaffManager
             decimal salary=0;
             return  salary;
         }
+        #endregion
 
+        #region Конструктор
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -56,5 +61,6 @@ namespace StaffManager
             this.Id = id;
             this.Name = name;
         }
+        #endregion
     }
 }

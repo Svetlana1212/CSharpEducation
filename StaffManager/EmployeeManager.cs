@@ -14,6 +14,7 @@ namespace StaffManager
     /// </summary>
     public class EmployeeManager: IEmployeeManager<Employee>
     {
+        #region Поля и свойства
         /// <summary>
         /// Путь к файлу, где записаны сотрудники.
         /// </summary>
@@ -33,13 +34,12 @@ namespace StaffManager
             {
                 Staffs = new List<Employee>();
             }
-        }         
+        }
+        #endregion
+
+        #region Методы
+        #region Методы интерфейса IEmployeeManager
         
-        /// <summary>
-        /// Добавить сотрудика в список.
-        /// </summary>
-        /// <param name="employee">Объект класса Employee(сотрудик) </param>
-        /// <exception cref="AddIdException"></exception>
         public bool Add(Employee employee) 
         {
             if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
@@ -54,13 +54,7 @@ namespace StaffManager
                 return true;                
             }                            
         }
-
-        /// <summary>
-        /// Найти сотрудика в списке.
-        /// </summary>
-        /// <param name="id">Id сотрудника</param>
-        /// <returns>Объект сотрудика</returns>
-        /// <exception cref="SreachNullException">Если объект пустой</exception>
+        
         public Employee Get(int id)
         {
             Employee user = Staffs.Find(item => item.Id == id);
@@ -70,12 +64,7 @@ namespace StaffManager
             }
             return user;
         }
-
-        /// <summary>
-        /// Редактировать информацию о сотруднике.
-        /// </summary>
-        /// <param name="employee">Объект сотрудника</param>
-        /// <param name="parametr">Параметр для редактирования</param>
+        
         public bool Update(Employee employee, string parametr, string parameterValue) 
         {
             switch (parametr)
@@ -103,7 +92,7 @@ namespace StaffManager
             Write();
             return true;
         }
-
+        #endregion
         /// <summary>
         /// Удалить сотрудика из списка.
         /// </summary>
@@ -172,6 +161,9 @@ namespace StaffManager
             }
             return true;
         }
+        #endregion
+
+        #region Конструктор
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -179,5 +171,6 @@ namespace StaffManager
         {
             LoadFromFile();
         }
+        #endregion
     }
 }

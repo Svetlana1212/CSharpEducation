@@ -28,6 +28,6 @@ namespace StaffManager
         /// Редактировать параметры объекта.
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
-        void Update(T employee) { }
+        bool Update(T employee) { }
     }
 }
