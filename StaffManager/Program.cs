@@ -202,14 +202,8 @@ namespace StaffManager
                                     break;
                                 
                             }
-                            if(newEmployeeManager.Update(updateEmployee, parametrType, parametrValue))
-                            {
-                                Console.WriteLine("Информация обновлена");
-                            }
-                            else
-                            {
-                                Console.WriteLine("Введены некорректные параметры");
-                            }
+                             newEmployeeManager.Update(updateEmployee, parametrType, parametrValue);
+                             Console.WriteLine("Информация обновлена");                            
                         }
                         catch (SreachNullException)
                         {
@@ -217,8 +211,7 @@ namespace StaffManager
                         }
                         break;
                     case 5:
-                        int delId = ReturnInt("Введите id сотрудника (целое число): ");
-                        
+                        int delId = ReturnInt("Введите id сотрудника (целое число): ");                        
                         try
                         {                            
                             Employee employee = newEmployeeManager.Get(delId);
