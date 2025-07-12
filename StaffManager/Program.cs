@@ -73,8 +73,6 @@ namespace StaffManager
         {
             bool programm = true;
             EmployeeManager newEmployeeManager = new EmployeeManager();
-
-
             do
             {
                 Console.WriteLine(@"

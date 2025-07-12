@@ -16,7 +16,7 @@ namespace StaffManager
         /// Добавить объект в коллекцию.
         /// </summary>
         /// <param name="employee"></param>
-        bool Add(T employee) { return true; }
+        void Add(T employee) { }
 
         /// <summary>
         /// Найти объект в коллекции по параметру.
@@ -28,6 +28,6 @@ namespace StaffManager
         /// Редактировать параметры объекта.
         /// </summary>
         /// <param name="employee">Объект сотрудника</param>
-        bool Update(T employee) { }
+        void Update(T employee) { }
     }
 }

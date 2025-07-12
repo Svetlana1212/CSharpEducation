@@ -12,7 +12,7 @@ namespace StaffManager
     /// <summary>
     /// Управляет списком сотрудников.
     /// </summary>
-    public class EmployeeManager: IEmployeeManager<Employee>
+    public class EmployeeManager : IEmployeeManager<Employee>
     {
         #region Поля и свойства
         /// <summary>
@@ -40,18 +40,16 @@ namespace StaffManager
         #region Методы
         #region Методы интерфейса IEmployeeManager
         
-        public bool Add(Employee employee) 
+        public void Add(Employee employee) 
         {
             if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
             {
-                throw new AddIdException("Пользователь с таким Id уже есть");
-                return false;
+                throw new AddIdException("Пользователь с таким Id уже есть");                
             } 
             else 
             {
                 Staffs.Add(employee);
-                Write();
-                return true;                
+                Write();                             
             }                            
         }
         
@@ -65,7 +63,7 @@ namespace StaffManager
             return user;
         }
         
-        public bool Update(Employee employee, string parametr, string parameterValue) 
+        public void Update(Employee employee, string parametr, string parameterValue) 
         {
             switch (parametr)
             {
@@ -73,11 +71,7 @@ namespace StaffManager
                     if(Decimal.TryParse(parameterValue, out decimal salary))
                     {
                         employee.BaseSalary = salary;
-                    }
-                    else
-                    {
-                        return false;                                             
-                    }
+                    }                    
                     break;
                 case "post":                    
                     employee.Post = parameterValue;
@@ -85,12 +79,10 @@ namespace StaffManager
                 case "type":                   
                     employee.Type = (parameterValue == "1") ? "FullTime" : "PartTime";     
                     break;
-                default:
-                    return false;
+                default:                    
                     break;
             }
-            Write();
-            return true;
+            Write();           
         }
         #endregion
         /// <summary>
