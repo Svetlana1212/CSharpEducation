@@ -35,7 +35,13 @@ namespace StaffManager
         /// <summary>
         /// Тип олаты(оклад или часовая ставка).
         /// </summary>
-        public string Type = "FullTime";
+        private string salaryType = SalaryType.MonthlyRate.ToString();
+        public string Type
+        {
+            get { return salaryType; }
+            set { salaryType = value; }
+        }
+
         #endregion
 
         #region Методы
@@ -60,6 +66,7 @@ namespace StaffManager
         /// <param name="name">имя сотрудника</param>
         public FullTimeEmployee(int id, string name) : base(id, name)
         {
+            
         }
         #endregion
     }

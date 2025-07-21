@@ -7,6 +7,15 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
+    /// Тип оплаты (оклад или часовая ставка).
+    /// </summary>
+    public enum SalaryType
+    {
+        MonthlyRate,
+        HourlyRate
+    }
+
+    /// <summary>
     /// Сотрудик.
     /// </summary>
     public abstract class Employee
@@ -31,36 +40,38 @@ namespace StaffManager
         /// Должность.
         /// </summary>
         public string Post { get; set; }
-
         /// <summary>
-        /// Тип оплаты (оклад или часовая ставка).
+        /// Тип пользователя по оплате
         /// </summary>
-        public string Type { get; set; }
-        #endregion
+        public string Type { get; set; }      
         
+
+        #endregion
+
         #region Методы
         /// <summary>
         /// Начислить заработную плату.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Возвращает заработную плату сотрудика.</returns>
         public decimal CalculateSalary()
         {
-            decimal salary=0;
-            return  salary;
+            return  BaseSalary;
         }
+        
         #endregion
 
         #region Конструктор
         /// <summary>
         /// Конструктор.
         /// </summary>
-        /// <param name="id">Id сотрудника</param>
-        /// <param name="name">Имя сотрудника</param>
+        /// <param name="id">Id сотрудника.</param>
+        /// <param name="name">Имя сотрудника.</param>
         public Employee(int id, string name)
         {
             this.Id = id;
             this.Name = name;
         }
+        
         #endregion
     }
 }

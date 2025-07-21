@@ -48,12 +48,12 @@ namespace StaffManager
             if (typeSalary == "1")
             {
                 newEmployee = new FullTimeEmployee(id, name);
-                newEmployee.Type = "FullTime";
+                //newEmployee.Salary = "FullTime";
             }
             else if (typeSalary == "2")
             {
                 newEmployee = new PartTimeEmployee(id, name);
-                newEmployee.Type = "PartTime";
+                //newEmployee.Type = "PartTime";
             }
             else
             {
@@ -72,7 +72,7 @@ namespace StaffManager
         static void Main(string[] args)
         {
             bool programm = true;
-            EmployeeManager newEmployeeManager = new EmployeeManager();
+            IEmployeeManager newEmployeeManager = new IEmployeeManager();
             do
             {
                 Console.WriteLine(@"
@@ -97,7 +97,7 @@ namespace StaffManager
                                 newEmployeeManager.Add(newEmployee);
                                 Console.WriteLine("Пользователь успешно добавлен");
                             }                            
-                            catch (AddIdException e)
+                            catch (EmployeeAlreadyAdded e)
                             {
                                 Console.WriteLine(e.Message); 
                             }
@@ -132,7 +132,7 @@ namespace StaffManager
                             newEmployeeManager.Add(newBriefEmployee);
                             Console.WriteLine("Пользователь успешно добавлен");
                         }
-                        catch (AddIdException e)
+                        catch (EmployeeAlreadyAdded e)
                         {
                             Console.WriteLine(e.Message);
                         }
@@ -148,13 +148,13 @@ namespace StaffManager
                             Employee viewedEmployee = newEmployeeManager.Get(viewedId);
                             if (viewedEmployee != null)
                             {
-                                string salaryType = (viewedEmployee.Type == "FullTime") ? "оклад" : "часовая ставка";
+                                string salaryType = (viewedEmployee.Type == "MonthlyRate") ? "оклад" : "часовая ставка";
                                 Console.WriteLine($"Сотрудник - Имя:{viewedEmployee.Name}, должность:{viewedEmployee.Post}, {salaryType}: {viewedEmployee.BaseSalary}");
                             }
                         }
-                        catch (SreachNullException)
+                        catch (EmployeeNotFound e)
                         {
-                            Console.WriteLine("Пользователь с таким id не найден");
+                            Console.WriteLine(e.Message);
                         }
                         break;
                     case 4:
@@ -162,7 +162,7 @@ namespace StaffManager
                         try
                         {                            
                             Employee updateEmployee = newEmployeeManager.Get(updateId);
-                            string salaryType = (updateEmployee.Type == "FullTime") ? "оклад" : "часовая ставка";
+                            string salaryType = (updateEmployee.Type == "MonthlyRate") ? "оклад" : "часовая ставка";
                             Console.WriteLine($"Сотрудник - Имя:{updateEmployee.Name}, должность:{updateEmployee.Post}, {salaryType}: {updateEmployee.BaseSalary}");
                             Console.WriteLine(@"Выберите параметр, который нужно изменить
 1.тип оплаты 
@@ -205,7 +205,7 @@ namespace StaffManager
                              newEmployeeManager.Update(updateEmployee, parametrType, parametrValue);
                              Console.WriteLine("Информация обновлена");                            
                         }
-                        catch (SreachNullException)
+                        catch (EmployeeNotFound)
                         {
                             Console.WriteLine("Пользователь с таким id не найден");
                         }
@@ -223,15 +223,11 @@ namespace StaffManager
                             }
                             
                         }
-                        catch(DeliteIdException e)
+                        catch(EmployeeNotFound e)
                         {
                             Console.WriteLine(e.Message);
                             
-                        }
-                        catch (SreachNullException)
-                        {
-                            Console.WriteLine("Пользователь с таким Id не найден");
-                        }
+                        }                    
 
                         break;
                     case 6:

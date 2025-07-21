@@ -12,7 +12,7 @@ namespace StaffManager
     /// <summary>
     /// Управляет списком сотрудников.
     /// </summary>
-    public class EmployeeManager : IEmployeeManager<Employee>
+    public class IEmployeeManager : IEmployeeManager<Employee>
     {
         #region Поля и свойства
         /// <summary>
@@ -35,68 +35,72 @@ namespace StaffManager
                 Staffs = new List<Employee>();
             }
         }
+
         #endregion
 
-        #region Методы
         #region Методы интерфейса IEmployeeManager
-        
-        public void Add(Employee employee) 
+
+        public void Add(Employee employee)
         {
             if (Staffs.FirstOrDefault(u => u.Id == employee.Id) != null)
             {
-                throw new AddIdException("Пользователь с таким Id уже есть");                
-            } 
-            else 
+                throw new EmployeeAlreadyAdded("Пользователь с таким Id уже есть");
+            }
+            else
             {
                 Staffs.Add(employee);
-                Write();                             
-            }                            
+                Write();
+            }
         }
-        
+
         public Employee Get(int id)
         {
             Employee user = Staffs.Find(item => item.Id == id);
             if (user == null)
             {
-                throw new SreachNullException("Пользователь с таким Id не найден");              
+                throw new EmployeeNotFound ("Пользователь с таким Id не найден");
             }
             return user;
         }
-        
-        public void Update(Employee employee, string parametr, string parameterValue) 
+
+        public void Update(Employee employee, string parametr, string parameterValue)
         {
             switch (parametr)
             {
-                case "salary":                    
-                    if(Decimal.TryParse(parameterValue, out decimal salary))
+                case "salary":
+                    if (Decimal.TryParse(parameterValue, out decimal salary))
                     {
                         employee.BaseSalary = salary;
-                    }                    
+                    }
                     break;
-                case "post":                    
+                case "post":
                     employee.Post = parameterValue;
                     break;
-                case "type":                   
-                    employee.Type = (parameterValue == "1") ? "FullTime" : "PartTime";     
+                case "type":
+                    employee.Type = (parameterValue == "1") ? "MonthlyRate" : "HourlyRate";
                     break;
-                default:                    
+                default:
                     break;
             }
-            Write();           
+            Write();
         }
+
         #endregion
+
+        #region Методы
+
         /// <summary>
         /// Удалить сотрудика из списка.
         /// </summary>
-        /// <param name="id">Id сотрудника</param>
-        /// <returns>true в случае успеха, иначе false </returns>
+        /// <param name="id">Id сотрудника.</param>
+        /// <returns>true в случае успеха, иначе false. </returns>
         /// <exception cref="DeliteIdException"></exception>
         public bool Delete(Employee employee)
         {
             //Employee employee = Get(id);
             if (employee == null)
             {
-                throw new DeliteIdException("Пользователь с таким Id не найден");
+                throw new EmployeeNotFound ("Пользователь с таким Id не найден");
                 return false;
             }            
             Staffs.Remove(employee);
@@ -120,17 +124,18 @@ namespace StaffManager
                     for (int i = 0; i < parts.Length; i = i + 5)
                     {
                         Employee employee;
-                        if (parts [i+4] == "FullTime") 
+                        if (parts [i+4] == "MonthlyRate") 
                         {
-                            employee = new FullTimeEmployee (Int32.Parse(parts[i]),parts[i + 1]);
+                            employee = new FullTimeEmployee (Int32.Parse(parts[i]),parts[i + 1]);                            
                         }
                         else
                         {
                             employee = new PartTimeEmployee (Int32.Parse(parts[i]),parts[i + 1]);
+                           
                         }                    
                         employee.BaseSalary = Decimal.Parse(parts[i + 2]);
                         employee.Post = parts[i + 3];
-                        employee.Type = parts[i + 4];
+                        
                         Staffs.Add(employee);
                     }
 
@@ -149,17 +154,19 @@ namespace StaffManager
             using StreamWriter sw = File.CreateText(Path);
             foreach (var item in Staffs)
             {
+                
                 sw.WriteLine($"{item.Id}|{item.Name}|{item.BaseSalary}|{item.Post}|{item.Type}");
             }
             return true;
         }
+
         #endregion
 
         #region Конструктор
         /// <summary>
         /// Конструктор.
         /// </summary>
-        public EmployeeManager()
+        public IEmployeeManager()
         {
             LoadFromFile();
         }

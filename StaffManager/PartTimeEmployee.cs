@@ -35,7 +35,13 @@ namespace StaffManager
         /// <summary>
         /// Тип олаты(оклад или часовая ставка).
         /// </summary>
-        public string Type = "PartTime";
+        private string salaryType = SalaryType.HourlyRate.ToString();
+        public string Type
+        {
+            get { return salaryType; }
+            set { salaryType = value; }
+        }
+
         #endregion
 
         #region Методы
@@ -59,6 +65,7 @@ namespace StaffManager
         /// <param name="name">Имя сотрудника</param>
         public PartTimeEmployee(int id, string name) : base(id, name)
         {
+            
         }
         #endregion
     }

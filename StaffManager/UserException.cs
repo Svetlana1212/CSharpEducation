@@ -10,28 +10,23 @@ namespace StaffManager
     /// <summary>
     /// Возникает в случае если пользователь с таким id уже есть.
     /// </summary>
-    public class AddIdException: Exception
+    public class EmployeeAlreadyAdded : Exception
     {
-        public AddIdException() { }
-        public AddIdException(string message) : base(message) { }        
-    }
+        public EmployeeAlreadyAdded() { }
 
-    /// <summary>
-    /// Возникает в случае если удаляемый пользователь не найден.
-    /// </summary>
-    public class DeliteIdException: Exception
-    {
-        public DeliteIdException() { }
-        public DeliteIdException(string message) : base(message) { }
+        public EmployeeAlreadyAdded(string message) : base(message) { }        
     }
 
     /// <summary>
     /// Возникает в случае если пользователь не найден.
     /// </summary>
-    public class SreachNullException : Exception
+    public class EmployeeNotFound : Exception
     {
-        public SreachNullException() { }
-        public SreachNullException(string message) : base(message) { }
+        public EmployeeNotFound() { }
+
+        public EmployeeNotFound(string message) : base(message) { }
     }
+
+    
 
 }
