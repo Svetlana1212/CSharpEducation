@@ -21,6 +21,7 @@ namespace StaffManager
     public abstract class Employee
     {
         #region Поля и свойства
+
         /// <summary>
         /// Id сотрудика.
         /// </summary>
@@ -40,11 +41,11 @@ namespace StaffManager
         /// Должность.
         /// </summary>
         public string Post { get; set; }
+
         /// <summary>
         /// Тип пользователя по оплате
         /// </summary>
-        public string Type { get; set; }      
-        
+        public string Type { get; set; }     
 
         #endregion
 

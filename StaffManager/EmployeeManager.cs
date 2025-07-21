@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 namespace StaffManager
 {
     /// <summary>
-    /// Управляет списком сотрудников.
+    /// Менеджер сотрудников.
     /// </summary>
     public class IEmployeeManager : IEmployeeManager<Employee>
     {
         #region Поля и свойства
+
         /// <summary>
         /// Путь к файлу, где записаны сотрудники.
         /// </summary>
@@ -24,6 +25,10 @@ namespace StaffManager
         /// Коллекция для хранения списка сотрудиков.
         /// </summary>
         private static List <Employee> Employees = new List <Employee> ();
+
+        /// <summary>
+        /// Список сотрудников.
+        /// </summary>
         private static List<Employee> Staffs
         {
             get
@@ -38,7 +43,7 @@ namespace StaffManager
 
         #endregion
 
-        #region Методы интерфейса IEmployeeManager
+        #region IEmployeeManager
 
         public void Add(Employee employee)
         {
@@ -97,7 +102,7 @@ namespace StaffManager
         /// <exception cref="DeliteIdException"></exception>
         public bool Delete(Employee employee)
         {
-            //Employee employee = Get(id);
+            
             if (employee == null)
             {
                 throw new EmployeeNotFound ("Пользователь с таким Id не найден");
@@ -108,6 +113,7 @@ namespace StaffManager
             return true;         
             
         }
+
         /// <summary>
         /// Считать данные из файла в список.
         /// </summary>
@@ -163,6 +169,7 @@ namespace StaffManager
         #endregion
 
         #region Конструктор
+
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -170,6 +177,7 @@ namespace StaffManager
         {
             LoadFromFile();
         }
+
         #endregion
     }
 }

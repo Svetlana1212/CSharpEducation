@@ -12,6 +12,7 @@ namespace StaffManager
     public class PartTimeEmployee : Employee
     {
         #region Поля и свойства
+
         /// <summary>
         /// Id сотрудика.
         /// </summary>
@@ -33,9 +34,13 @@ namespace StaffManager
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип олаты(оклад или часовая ставка).
+        /// Тип оплаты по умолчанию.
         /// </summary>
         private string salaryType = SalaryType.HourlyRate.ToString();
+
+        /// <summary>
+        /// Тип олаты - свойство.
+        /// </summary>
         public string Type
         {
             get { return salaryType; }
@@ -45,6 +50,7 @@ namespace StaffManager
         #endregion
 
         #region Методы
+
         /// <summary>
         /// Начислить заработную плату сотрудника по часовой ставке.
         /// </summary>
@@ -55,9 +61,11 @@ namespace StaffManager
             decimal salary = Math.Round(this.BaseSalary * workCount);
             return salary;
         }
+
         #endregion
 
         #region Конструктор
+
         /// <summary>
         /// Конструктор.
         /// </summary>
@@ -67,6 +75,7 @@ namespace StaffManager
         {
             
         }
+
         #endregion
     }
 }

@@ -47,13 +47,11 @@ namespace StaffManager
             Employee newEmployee;
             if (typeSalary == "1")
             {
-                newEmployee = new FullTimeEmployee(id, name);
-                //newEmployee.Salary = "FullTime";
+                newEmployee = new FullTimeEmployee(id, name);                
             }
             else if (typeSalary == "2")
             {
-                newEmployee = new PartTimeEmployee(id, name);
-                //newEmployee.Type = "PartTime";
+                newEmployee = new PartTimeEmployee(id, name);                
             }
             else
             {
