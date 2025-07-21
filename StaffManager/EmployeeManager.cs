@@ -72,7 +72,7 @@ namespace StaffManager
         {
             switch (parametr)
             {
-                case "salary":
+                case "baseSalary":
                     if (Decimal.TryParse(parameterValue, out decimal salary))
                     {
                         employee.BaseSalary = salary;
@@ -99,7 +99,7 @@ namespace StaffManager
         /// </summary>
         /// <param name="id">Id сотрудника.</param>
         /// <returns>true в случае успеха, иначе false. </returns>
-        /// <exception cref="DeliteIdException"></exception>
+        /// <exception cref="EmployeeNotFound">Возникает в случае, если пользователь с таким Id не найден.</exception>
         public bool Delete(Employee employee)
         {
             
@@ -117,10 +117,11 @@ namespace StaffManager
         /// <summary>
         /// Считать данные из файла в список.
         /// </summary>
-        /// <returns>Список сотрудников</returns>
+        /// <returns>Список сотрудников.</returns>
         private bool LoadFromFile()
         {
-            if (!File.Exists(Path)) return false;
+            if (!File.Exists(Path)) 
+                return false;
             string[] lines = File.ReadAllLines(Path);
             if (lines.Length >= 1)
             {
@@ -154,7 +155,7 @@ namespace StaffManager
         /// <summary>
         /// Записать данные.
         /// </summary>
-        /// <returns>true в случае успеха, иначе false</returns>
+        /// <returns>true в случае успеха, иначе false.</returns>
         public bool Write()
         {
             using StreamWriter sw = File.CreateText(Path);

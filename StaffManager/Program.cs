@@ -188,7 +188,7 @@ namespace StaffManager
                                 case 2:
                                     Console.Write("Введите новую ставку для расчета заработной платы:");
                                     parametrValue = Console.ReadLine();
-                                    parametrType = "salary";                                 
+                                    parametrType = "baseSalary";                                 
                                     break;
                                 case 3:
                                     Console.WriteLine("Введите новую должность:");
