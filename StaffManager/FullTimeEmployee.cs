@@ -34,18 +34,18 @@ namespace StaffManager
         public string Post {  get; set; }
 
         /// <summary>
-        /// Тип олаты по умолчанию.
+        /// Тип олаты.
         /// </summary>
-        private string salaryType = SalaryType.MonthlyRate.ToString();
+        public string Type = SalaryType.MonthlyRate.ToString();
 
         /// <summary>
         /// Тип оплаты - свойство.
         /// </summary>
-        public string Type
+        /*public string Type
         {
             get { return salaryType; }
             set { salaryType = value; }
-        }
+        }*/
 
         #endregion
 
@@ -56,9 +56,9 @@ namespace StaffManager
         /// <param name="monthDaysCount">Количество дней в месяце.</param>
         /// <param name="workDaysCount">Количество отработанных дней.</param>
         /// <returns>Возвращает заработную плату, рассчитанную по окладу.</returns>
-        public decimal CalculateSalary(int monthDaysCount, int workDaysCount)
+        public decimal CalculateSalary (int monthDaysCount, int workDaysCount)
         {
-            decimal salary = Math.Round((this.BaseSalary / monthDaysCount) * workDaysCount, 2);
+            decimal salary = Math.Round ((this.BaseSalary / monthDaysCount) * workDaysCount, 2);
             return salary;
         }
         #endregion
@@ -69,9 +69,9 @@ namespace StaffManager
         /// </summary>
         /// <param name="id">Id сотрудика.</param>
         /// <param name="name">Имя сотрудника.</param>
-        public FullTimeEmployee(int id, string name) : base(id, name)
+        public FullTimeEmployee (int id, string name) : base(id, name)
         {
-            
+            this.Type = SalaryType.MonthlyRate.ToString();
         }
 
         #endregion

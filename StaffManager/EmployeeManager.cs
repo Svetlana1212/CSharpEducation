@@ -125,27 +125,31 @@ namespace StaffManager
             string[] lines = File.ReadAllLines(Path);
             if (lines.Length >= 1)
             {
+                Dictionary<string, string> dictionary = new Dictionary<string, string>();
                 foreach (string line in lines)
                 {
                     string[] parts = line.Split('|');
-                    for (int i = 0; i < parts.Length; i = i + 5)
+                    
+                    for (int i = 0; i < parts.Length; i++)
                     {
-                        Employee employee;
-                        if (parts [i+4] == "MonthlyRate") 
-                        {
-                            employee = new FullTimeEmployee (Int32.Parse(parts[i]),parts[i + 1]);                            
-                        }
-                        else
-                        {
-                            employee = new PartTimeEmployee (Int32.Parse(parts[i]),parts[i + 1]);
-                           
-                        }                    
-                        employee.BaseSalary = Decimal.Parse(parts[i + 2]);
-                        employee.Post = parts[i + 3];
-                        
-                        Staffs.Add(employee);
+                        string[] item = parts[i].Split(':');                       
+                        dictionary.Add(item[0], item[1]);
                     }
-
+                    Employee employee;
+                    if (dictionary["Type"] == "MonthlyRate")
+                    {
+                        employee = new FullTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);
+                        employee.Type = SalaryType.MonthlyRate.ToString();
+                    }
+                    else 
+                    {
+                        employee = new PartTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);
+                        employee.Type = SalaryType.HourlyRate.ToString();
+                    }                    
+                    employee.BaseSalary = Decimal.Parse(dictionary["BaseSalary"]);
+                    employee.Post = dictionary["Post"];                        
+                    Staffs.Add(employee);
+                    dictionary.Clear();     
                 }
 
             }
@@ -160,9 +164,8 @@ namespace StaffManager
         {
             using StreamWriter sw = File.CreateText(Path);
             foreach (var item in Staffs)
-            {
-                
-                sw.WriteLine($"{item.Id}|{item.Name}|{item.BaseSalary}|{item.Post}|{item.Type}");
+            {                
+                sw.WriteLine($"Id:{item.Id}|Name:{item.Name}|BaseSalary:{item.BaseSalary}|Post:{item.Post}|Type:{item.Type}");
             }
             return true;
         }

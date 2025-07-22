@@ -43,7 +43,7 @@ namespace StaffManager
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип пользователя по оплате
+        /// Тип пользователя по оплате.
         /// </summary>
         public string Type { get; set; }     
 
