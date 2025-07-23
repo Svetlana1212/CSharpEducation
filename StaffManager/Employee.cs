@@ -45,7 +45,7 @@ namespace StaffManager
         /// <summary>
         /// Тип пользователя по оплате.
         /// </summary>
-        public string Type { get; set; }     
+        public virtual SalaryType Type { get; set; }     
 
         #endregion
 

@@ -34,22 +34,23 @@ namespace StaffManager
         public string Post {  get; set; }
 
         /// <summary>
-        /// Тип олаты.
-        /// </summary>
-        public string Type = SalaryType.MonthlyRate.ToString();
-
+        /// Тип олаты по умолчанию.
+        /// </summary>        
+        private SalaryType BaseType = SalaryType.MonthlyRate;
+        
         /// <summary>
         /// Тип оплаты - свойство.
         /// </summary>
-        /*public string Type
+        public override SalaryType Type
         {
-            get { return salaryType; }
-            set { salaryType = value; }
-        }*/
-
+            get { return BaseType; }
+            set { BaseType = value; }
+        }   
+        
         #endregion
 
         #region Методы
+
         /// <summary>
         /// Начислить заработную плату сотрудника по окладу.
         /// </summary>
@@ -61,17 +62,18 @@ namespace StaffManager
             decimal salary = Math.Round ((this.BaseSalary / monthDaysCount) * workDaysCount, 2);
             return salary;
         }
+
         #endregion
 
         #region Конструктор
+
         /// <summary>
         /// Конструктор.
         /// </summary>
         /// <param name="id">Id сотрудика.</param>
         /// <param name="name">Имя сотрудника.</param>
         public FullTimeEmployee (int id, string name) : base(id, name)
-        {
-            this.Type = SalaryType.MonthlyRate.ToString();
+        {            
         }
 
         #endregion

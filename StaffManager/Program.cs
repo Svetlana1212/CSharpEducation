@@ -48,12 +48,12 @@ namespace StaffManager
             if (typeSalary == "1")
             {
                 newEmployee = new FullTimeEmployee(id, name);
-                newEmployee.Type = SalaryType.MonthlyRate.ToString();
+                //newEmployee.Type = SalaryType.MonthlyRate.ToString();
             }
             else if (typeSalary == "2")
             {
                 newEmployee = new PartTimeEmployee(id, name);
-                newEmployee.Type = SalaryType.HourlyRate.ToString();
+                //newEmployee.Type = SalaryType.HourlyRate.ToString();
             }
             else
             {
@@ -122,12 +122,12 @@ namespace StaffManager
                         else if (typeSalary == "1")
                         {
                             newBriefEmployee = new FullTimeEmployee(userId, name);
-                            newBriefEmployee.Type = SalaryType.MonthlyRate.ToString();
+                            //newBriefEmployee.Type = SalaryType.MonthlyRate.ToString();
                         }
                         else if (typeSalary == "2")
                         {
                             newBriefEmployee = new PartTimeEmployee(userId, name);
-                            newBriefEmployee.Type = SalaryType.HourlyRate.ToString();
+                            //newBriefEmployee.Type = SalaryType.HourlyRate.ToString();
                         }
                         try 
                         {
@@ -150,7 +150,7 @@ namespace StaffManager
                             Employee viewedEmployee = newEmployeeManager.Get(viewedId);
                             if (viewedEmployee != null)
                             {
-                                string salaryType = (viewedEmployee.Type == "MonthlyRate") ? "оклад" : "часовая ставка";
+                                string salaryType = (viewedEmployee.Type == SalaryType.MonthlyRate) ? "оклад" : "часовая ставка";
                                 Console.WriteLine($"Сотрудник - Имя:{viewedEmployee.Name}, должность:{viewedEmployee.Post}, {salaryType}: {viewedEmployee.BaseSalary}");
                             }
                         }
@@ -164,7 +164,7 @@ namespace StaffManager
                         try
                         {                            
                             Employee updateEmployee = newEmployeeManager.Get(updateId);
-                            string salaryType = (updateEmployee.Type == "MonthlyRate") ? "оклад" : "часовая ставка";
+                            string salaryType = (updateEmployee.Type == SalaryType.MonthlyRate) ? "оклад" : "часовая ставка";
                             Console.WriteLine($"Сотрудник - Имя:{updateEmployee.Name}, должность:{updateEmployee.Post}, {salaryType}: {updateEmployee.BaseSalary}");
                             Console.WriteLine(@"Выберите параметр, который нужно изменить
 1.тип оплаты 

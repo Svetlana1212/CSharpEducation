@@ -82,7 +82,7 @@ namespace StaffManager
                     employee.Post = parameterValue;
                     break;
                 case "type":
-                    employee.Type = (parameterValue == "1") ? "MonthlyRate" : "HourlyRate";
+                    employee.Type = (parameterValue == "1") ? SalaryType.MonthlyRate : SalaryType.HourlyRate;
                     break;
                 default:
                     break;
@@ -138,13 +138,11 @@ namespace StaffManager
                     Employee employee;
                     if (dictionary["Type"] == "MonthlyRate")
                     {
-                        employee = new FullTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);
-                        employee.Type = SalaryType.MonthlyRate.ToString();
+                        employee = new FullTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);                        
                     }
                     else 
                     {
-                        employee = new PartTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);
-                        employee.Type = SalaryType.HourlyRate.ToString();
+                        employee = new PartTimeEmployee(Int32.Parse(dictionary["Id"]), dictionary["Name"]);                       
                     }                    
                     employee.BaseSalary = Decimal.Parse(dictionary["BaseSalary"]);
                     employee.Post = dictionary["Post"];                        

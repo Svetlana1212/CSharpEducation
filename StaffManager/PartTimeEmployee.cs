@@ -34,10 +34,20 @@ namespace StaffManager
         public string Post { get; set; }
 
         /// <summary>
-        /// Тип оплаты.
+        /// Тип оплаты по умолчанию.
         /// </summary>
-        public string Type = SalaryType.HourlyRate.ToString();
-        
+        private SalaryType BaseType = SalaryType.HourlyRate;
+
+        /// <summary>
+        /// Тип оплаты - свойство
+        /// </summary>
+        public override SalaryType Type
+        {
+            get { return BaseType; }
+            set { BaseType = value; }
+
+        }
+
         #endregion
 
         #region Методы
@@ -63,8 +73,7 @@ namespace StaffManager
         /// <param name="id">Id сотрудника </param>
         /// <param name="name">Имя сотрудника</param>
         public PartTimeEmployee(int id, string name) : base(id, name)
-        {
-            this.Type = SalaryType.HourlyRate.ToString();
+        {            
         }
 
         #endregion
