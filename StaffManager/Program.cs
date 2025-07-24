@@ -47,13 +47,11 @@ namespace StaffManager
             Employee newEmployee;
             if (typeSalary == "1")
             {
-                newEmployee = new FullTimeEmployee(id, name);
-                //newEmployee.Type = SalaryType.MonthlyRate.ToString();
+                newEmployee = new FullTimeEmployee(id, name);                
             }
             else if (typeSalary == "2")
             {
-                newEmployee = new PartTimeEmployee(id, name);
-                //newEmployee.Type = SalaryType.HourlyRate.ToString();
+                newEmployee = new PartTimeEmployee(id, name);                
             }
             else
             {
@@ -121,13 +119,11 @@ namespace StaffManager
                         } 
                         else if (typeSalary == "1")
                         {
-                            newBriefEmployee = new FullTimeEmployee(userId, name);
-                            //newBriefEmployee.Type = SalaryType.MonthlyRate.ToString();
+                            newBriefEmployee = new FullTimeEmployee(userId, name);                           
                         }
                         else if (typeSalary == "2")
                         {
-                            newBriefEmployee = new PartTimeEmployee(userId, name);
-                            //newBriefEmployee.Type = SalaryType.HourlyRate.ToString();
+                            newBriefEmployee = new PartTimeEmployee(userId, name);                            
                         }
                         try 
                         {
