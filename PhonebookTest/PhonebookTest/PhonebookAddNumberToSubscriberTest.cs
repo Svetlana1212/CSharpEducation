@@ -67,7 +67,8 @@ namespace PhonebookTest
                 manager.AddNumberToSubscriber(subscriber, newNumber);
 
                 // Assert
-                Subscriber updatedSubscriber = manager.GetSubscriber(subscriber.Id);                
+                Subscriber updatedSubscriber = manager.GetSubscriber(subscriber.Id);
+                
                 Assert.AreEqual(subscriber,updatedSubscriber);
             }
         }
