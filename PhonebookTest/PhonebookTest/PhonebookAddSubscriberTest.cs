@@ -17,7 +17,7 @@ namespace PhonebookTest
         public void AddSubscriber_NewSubscriber_AddsSuccessfully()
         {
             // Arrange
-            PhoneNumber number = new PhoneNumber ("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber ("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber> ();
             numbers.Add(number);
             var subscriber = new Subscriber("John Doe",numbers);
@@ -34,7 +34,7 @@ namespace PhonebookTest
         public void AddSubscriber_ExistingSubscriber_ThrowsInvalidOperationException()
         {
             // Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
             var subscriber = new Subscriber("John Doe", numbers);

@@ -25,9 +25,9 @@ namespace PhonebookTest
             public void AddNumberToSubscriber_ShouldAddNewNumber()
             {
                 // Arrange
-                PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+                PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
                 var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number });
-                PhoneNumber newNumber = new PhoneNumber("+7 950 333-5555", PhoneNumberType.Personal);
+                PhoneNumber newNumber = new PhoneNumber("+7 (950) 333-5555", PhoneNumberType.Personal);
 
                 // Act
                 manager.AddSubscriber(subscriber);
@@ -44,9 +44,9 @@ namespace PhonebookTest
             public void AddNumberToSubscriber_ShouldNotModifyOriginalSubscriber()
             {
                 // Arrange
-                PhoneNumber number = new PhoneNumber("+7 950 444-4444", PhoneNumberType.Personal);
+                PhoneNumber number = new PhoneNumber("+7 (950) 444-4444", PhoneNumberType.Personal);
                 var subscriber = new Subscriber("Jin", new List<PhoneNumber> { number });
-                PhoneNumber newNumber = new PhoneNumber("+7 950 555-5555", PhoneNumberType.Personal);
+                PhoneNumber newNumber = new PhoneNumber("+7 (950) 555-5555", PhoneNumberType.Personal);
                 List<PhoneNumber> numbers = new List<PhoneNumber>();
                 numbers.Add(newNumber);
                 // Act
@@ -63,9 +63,9 @@ namespace PhonebookTest
             public void AddNumberToSubscriber_ShouldUpdateSubscriberWithSameId()
             {
                 // Arrange
-                PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+                PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
                 var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number });
-                PhoneNumber newNumber = new PhoneNumber("+7 950 333-5555", PhoneNumberType.Personal);
+                PhoneNumber newNumber = new PhoneNumber("+7 (950) 333-5555", PhoneNumberType.Personal);
 
                 // Act
                 manager.AddSubscriber(subscriber);

@@ -21,7 +21,7 @@ namespace PhonebookTest
         public void RenameSubscriber_ShouldUpdateName()
         {
             // Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number});
             manager.AddSubscriber(subscriber);
             Subscriber updatedSubscriber = manager.GetSubscriber(subscriber.Id);
@@ -42,7 +42,7 @@ namespace PhonebookTest
         public void RenameSubscriber_ShouldNotModifyOriginalSubscriber()
         {
             // Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
             var subscriber = new Subscriber("John Doe", new List<PhoneNumber>{ number });

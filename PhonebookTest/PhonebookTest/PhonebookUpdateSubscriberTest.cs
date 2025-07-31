@@ -21,10 +21,10 @@ namespace PhonebookTest
         public void UpdateSubscriber_ValidSubscribers_UpdatesCorrectly()
         {
             // Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
-            PhoneNumber number1 = new PhoneNumber("+7 950 555-4444", PhoneNumberType.Personal);
+            PhoneNumber number1 = new PhoneNumber("+7 (950) 555-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers1 = new List<PhoneNumber>();
             numbers1.Add(number1);
             Guid Id = Guid.NewGuid();

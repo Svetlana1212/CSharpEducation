@@ -21,10 +21,10 @@ namespace PhonebookTest
         public void DeleteSubscriberTest()
         {
             //Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
-            PhoneNumber number1 = new PhoneNumber("+7 950 555-4444", PhoneNumberType.Personal);
+            PhoneNumber number1 = new PhoneNumber("+7 (950) 555-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers1 = new List<PhoneNumber>();
             numbers.Add(number1);
             Subscriber subscriber1 = new Subscriber("Alice", numbers);
@@ -45,10 +45,10 @@ namespace PhonebookTest
         public void DeleteInvalidSubscriberTest()
         {
             //Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
+            PhoneNumber number = new PhoneNumber("+7 (950) 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
-            PhoneNumber number1 = new PhoneNumber("+7 950 555-4444", PhoneNumberType.Personal);
+            PhoneNumber number1 = new PhoneNumber("+7 (950) 555-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers1 = new List<PhoneNumber>();
             numbers.Add(number1);
             Subscriber subscriber1 = new Subscriber("Alice", numbers);
