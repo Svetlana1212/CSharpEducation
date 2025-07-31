@@ -30,6 +30,7 @@ namespace PhonebookTest
                 PhoneNumber newNumber = new PhoneNumber("+7 950 333-5555", PhoneNumberType.Personal);
 
                 // Act
+                manager.AddSubscriber(subscriber);
                 manager.AddNumberToSubscriber(subscriber, newNumber);
 
                 // Assert
@@ -43,16 +44,19 @@ namespace PhonebookTest
             public void AddNumberToSubscriber_ShouldNotModifyOriginalSubscriber()
             {
                 // Arrange
-                PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
-                var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number });
-                PhoneNumber newNumber = new PhoneNumber("+7 950 333-5555", PhoneNumberType.Personal);
+                PhoneNumber number = new PhoneNumber("+7 950 444-4444", PhoneNumberType.Personal);
+                var subscriber = new Subscriber("Jin", new List<PhoneNumber> { number });
+                PhoneNumber newNumber = new PhoneNumber("+7 950 555-5555", PhoneNumberType.Personal);
                 List<PhoneNumber> numbers = new List<PhoneNumber>();
                 numbers.Add(newNumber);
                 // Act
+                manager.AddSubscriber(subscriber);
                 manager.AddNumberToSubscriber(subscriber, newNumber);
 
-                // Assert                
-                Assert.Equals(newNumber, subscriber.PhoneNumbers.ElementAt(0).Number);
+                // Assert
+                Subscriber updateSubscriber = manager.GetSubscriber(subscriber.Id);
+                Assert.AreEqual(updateSubscriber.PhoneNumbers.Count(), 2);
+                Assert.AreEqual(numbers.ElementAt(0).Number, updateSubscriber.PhoneNumbers.ElementAt(1).Number);
             }
 
             [Test]
@@ -62,8 +66,9 @@ namespace PhonebookTest
                 PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
                 var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number });
                 PhoneNumber newNumber = new PhoneNumber("+7 950 333-5555", PhoneNumberType.Personal);
-                
+
                 // Act
+                manager.AddSubscriber(subscriber);
                 manager.AddNumberToSubscriber(subscriber, newNumber);
 
                 // Assert
