@@ -47,24 +47,6 @@ namespace PhonebookTest
 
             //Assert            
             Assert.That(ex.Message, Is.EqualTo("Unable to add subscriber. Subscriber exists"));
-        }
-
-       /*[Test]
-        public void AddSubscriber_InvalidPhoneNumbers_ThrowsArgumentException()
-        {
-            // Arrange
-            //Пустой телефонный номер
-            PhoneNumber number = new PhoneNumber(string.Empty, PhoneNumberType.Personal);
-            List<PhoneNumber> numbers = new List<PhoneNumber>();
-            numbers.Add(number);
-            var subscriber = new Subscriber("Bob Roy", numbers);
-
-            //Act
-            var ex = Assert.Throws<ArgumentException>(() => manager.AddSubscriber(subscriber));
-             
-            //Assert
-            Assert.That(ex.Message, Is.EqualTo("Invalid phone numbers list"));
-        }*/
-    
+        }       
     }
 }

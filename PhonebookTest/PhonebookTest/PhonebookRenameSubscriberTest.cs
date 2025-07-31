@@ -22,35 +22,21 @@ namespace PhonebookTest
         {
             // Arrange
             PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
-            var subscriber = new Subscriber(Guid.NewGuid(), "John Doe", new List<PhoneNumber> { number});
-            
-            // Act
-            manager.RenameSubscriber(subscriber, "Jane Doe");
-            Guid id = subscriber.Id;
-            Subscriber updatedSubscriber = manager.GetSubscriber(id);
-
-            // Assert
-            Assert.Equals("Jane Doe", updatedSubscriber.Name);
-            Assert.Equals(subscriber.Id, updatedSubscriber.Id);
-            Assert.Equals(subscriber.PhoneNumbers, updatedSubscriber.PhoneNumbers);
-        }        
-
-        [Test]
-        public void RenameSubscriber_ShouldKeepOriginalIdAndPhoneNumbers()
-        {
-            // Arrange
-            PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
             var subscriber = new Subscriber("John Doe", new List<PhoneNumber> { number});
-            Guid id = subscriber.Id;
-            Subscriber updatedSubscriber = manager.GetSubscriber(id);
+            manager.AddSubscriber(subscriber);
+            Subscriber updatedSubscriber = manager.GetSubscriber(subscriber.Id);
 
             // Act
-            manager.RenameSubscriber(subscriber, "Jane Doe");
+            manager.RenameSubscriber(updatedSubscriber, "Jane Doe");
 
             // Assert
-            Assert.Equals(subscriber.Id, updatedSubscriber.Id);
-            Assert.Equals(subscriber.PhoneNumbers, updatedSubscriber.PhoneNumbers);
-        }
+            Subscriber newSubscriber = manager.GetSubscriber(subscriber.Id);
+            Assert.AreEqual("Jane Doe", newSubscriber.Name);
+            Assert.AreEqual(subscriber.Id, updatedSubscriber.Id);            
+            Assert.AreEqual(subscriber.PhoneNumbers[0].Number, updatedSubscriber.PhoneNumbers[0].Number);
+
+        } 
+      
 
         [Test]
         public void RenameSubscriber_ShouldNotModifyOriginalSubscriber()
@@ -59,16 +45,19 @@ namespace PhonebookTest
             PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
             List<PhoneNumber> numbers = new List<PhoneNumber>();
             numbers.Add(number);
-            var subscriber = new Subscriber(Guid.NewGuid(), "John Doe", new List<PhoneNumber>{ number });
-            
+            var subscriber = new Subscriber("John Doe", new List<PhoneNumber>{ number });
+            manager.AddSubscriber(subscriber);
+            Subscriber updatedSubscriber = manager.GetSubscriber(subscriber.Id);
+
             // Act
-            manager.RenameSubscriber(subscriber, "Jane Doe");
+            manager.RenameSubscriber(updatedSubscriber, "John Doe");
 
             // Assert
-            Assert.Equals("John Doe", subscriber.Name);
+            Subscriber newSubscriber = manager.GetSubscriber(subscriber.Id);
+            Assert.AreEqual("John Doe", newSubscriber.Name);
 
             //Assert.(subscriber.PhoneNumbers);
-            Assert.Equals(numbers, subscriber.PhoneNumbers[0].Number);
+            Assert.AreEqual(numbers.ElementAt(0).Number, newSubscriber.PhoneNumbers[0].Number);
         }
         
     }

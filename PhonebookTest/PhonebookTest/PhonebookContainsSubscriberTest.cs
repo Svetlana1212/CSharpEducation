@@ -24,48 +24,61 @@ namespace PhonebookTest
             [Test]
             public void ContainsSubscriber_NullInput_ReturnsNull()
             {
+                // Act
                 bool? result = manager.ContainsSubscriber(null);
 
+                //Assert
                 Assert.IsNull(result);
             }
 
             [Test]
             public void ContainsSubscriber_SubscriberExists_ReturnsTrue()
             {
+                // Arrange
                 PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
                 List<PhoneNumber> numbers = new List<PhoneNumber>();
                 numbers.Add(number);
-                var subscriber = new Subscriber (Guid.NewGuid(),"Alice",numbers);
-                manager.AddSubscriber(subscriber);
+                Subscriber subscriber = new Subscriber ("Alice",numbers);                
 
-                bool? result = manager.ContainsSubscriber(subscriber);
+                // Act
+                var result = manager.ContainsSubscriber(subscriber);
 
+                //Assert
                 Assert.IsTrue(result);
             }
 
             [Test]
             public void ContainsSubscriber_SubscriberDoesNotExist_ReturnsFalse()
             {
+                // Arrange
                 PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
                 List<PhoneNumber> numbers = new List<PhoneNumber>();
                 numbers.Add(number);
-                var subscriber = new Subscriber (Guid.NewGuid(), "Bob",numbers);
+                var subscriber = new Subscriber ("Bob",numbers);
+
+                //Act
                 bool? result = manager.ContainsSubscriber(subscriber);
+
+                //Assert
                 Assert.IsFalse(result);
             }
 
             [Test]
             public void ContainsSubscriber_DifferentSubscriberWithSameId_ReturnsTrue()
             {
+                //Arrange
                 PhoneNumber number = new PhoneNumber("+7 950 333-4444", PhoneNumberType.Personal);
                 List<PhoneNumber> numbers = new List<PhoneNumber>();
                 numbers.Add(number);
                 var subscriber1 = new Subscriber(Guid.NewGuid(), "Charlie", numbers);
                 manager.AddSubscriber(subscriber1);
-
                 // Новый объект с таким же Id
-                var subscriber2 = new Subscriber(subscriber1.Id, "Charlie Clone", numbers );
+                var subscriber2 = new Subscriber(subscriber1.Id, "Charlie Clone", numbers);
+                
+                //Act
                 bool? result = manager.ContainsSubscriber(subscriber2);
+                
+                //Assert
                 Assert.IsTrue(result);
             }
         }
