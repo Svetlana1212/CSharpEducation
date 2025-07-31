@@ -101,7 +101,7 @@ public class Phonebook
 
     public bool? ContainsSubscriber(Subscriber subscriber)
     {
-        throw new NotImplementedException();
+        return this.subscribers.Contains(subscriber);
     }
 
     #endregion
