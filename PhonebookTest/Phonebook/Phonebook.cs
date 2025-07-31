@@ -60,9 +60,9 @@ public class Phonebook
   public void AddNumberToSubscriber(Subscriber subscriber, PhoneNumber number)
   {
         var newNumbers = new List<PhoneNumber>(subscriber.PhoneNumbers)
-    {
-        number
-    };
+        {
+            number
+        };
     var subscriberWithNewNumber = new Subscriber(subscriber.Id, subscriber.Name, newNumbers);
     this.UpdateSubscriber(subscriber, subscriberWithNewNumber);
   }

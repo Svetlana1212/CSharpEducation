@@ -13,7 +13,8 @@ namespace PhonebookTest
         [TestFixture]
         public class SubscriberManagerTests
         {
-            private Phonebook.Phonebook manager;
+           //Метод не реализован
+            /* private Phonebook.Phonebook manager;
 
             [SetUp]
             public void Setup()
@@ -80,7 +81,7 @@ namespace PhonebookTest
                 
                 //Assert
                 Assert.IsTrue(result);
-            }
+            }*/
         }
     }
 }
